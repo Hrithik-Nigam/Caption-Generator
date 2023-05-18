@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Caption generator</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="bg-danger bg-gradient">
+<p><h1 align="center">Caption Generator</h1></p>
+<div class="container">
+<div class="row">
+    <h5 align="center">Upload the image(please make sure the format is .jpg or .png).</h5>
+    {% if filename %}
+        <div align="center" class="card">
+            <img src="{{ url_for('display_image', filename=filename) }}"width="400" 
+            height="400" align="center">
+        </div>
+    {% endif %}
+    <form method="post" action="/" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" class="form-control" required width="50">
+            </p>
+        </dl>
+        <p>
+            Click here to gerenate captions:
+            <input type="submit" value="Generate" class="btn btn-info">
+        </p>
+    </form>
+</div>
+</div>
+<div class="card">
+<ul class="list-group list-group-flush">
+    {% for o in output %}
+    <h4><b></b><li class="list-group-item">{{ o }}</li></b></h4>
+    {% endfor %}
+</ul>
+</div>
+</div>
+</body>
+</html>
